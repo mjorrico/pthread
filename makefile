@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-Ofast
 LDFLAGS=-lm -lpthread
-OBJS=introduction race_condition mutex pthread_create
+OBJS=introduction race_condition mutex pthread_create get_output pass_argument
 
 all: 001 003 004
 
@@ -28,6 +28,18 @@ all: 001 003 004
 
 005_pthread_create.o: 005_pthread_create.c
 	$(CC) $(CFLAGS) -c 005_pthread_create.c -o 005_pthread_create.o
+
+006: 006_get_output.o
+	$(CC) $(CFLAGS) -o get_output 006_get_output.o $(LDFLAGS)
+
+006_get_output.o: 006_get_output.c 
+	$(CC) $(CFLAGS) -c 006_get_output.c -o 006_get_output.o
+
+007: 007_pass_argument.o
+	$(CC) $(CFLAGS) -o pass_argument 007_pass_argument.o $(LDFLAGS)
+
+007_pass_argument.o: 007_pass_argument.c
+	$(CC) $(CFLAGS) -c 007_pass_argument.c -o 007_pass_argument.o
 
 clean:
 	rm *.o $(OBJS)
